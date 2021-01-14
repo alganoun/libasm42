@@ -1,0 +1,1 @@
+nasm -f macho64 test.s && ld -e _start -macosx_version_min 10.12 -lSystem -o test test.o
