@@ -19,3 +19,5 @@ exit:
 		movzx	r8, bl
 		sub		rax, r8			; rax = rax - r8
 		ret
+
+; je dois encore comprendre ce que son tous ces low register et à quoi ça sert
