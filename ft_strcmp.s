@@ -2,15 +2,20 @@ segment .text
 		global _ft_strcmp
 
 _ft_strcmp:
-		mov		rax, 0					; initialize the return value to zero
-		jmp		comp					; going to the comp fontion
-comp:
-		mov		rdx, [rbp+4 + rax]
-		mov		rbx, [rbp+8 + rax]	; store the pointer soustraction in case of return
-		cmp		rdx, rbx			;
-		jnz		exit				; if rax is different to zero call the exit function
-		inc		rax					; increment the second argument pointer
-		jmp		comp
-exit :
-		mov		rax, rdx
-		ret								; return the value stored un rax
+		mov		al, BYTE [rdi]  ; al <- rdi[0] move first byte of rdi in al (al registe 1 BYTE)
+		mov		bl, BYTE [rsi]	; bl <- rdi[0] move first byte of rdi in bl (bl registe 1 BYTE)
+		cmp		al, 0			; chek if we are at the end of the character chain (rdi argv[0])
+		je		exit			; if is end of rdi go to function exit
+		cmp		bl, 0			
+		je		exit
+		cmp		al, bl			; compare al with bl
+		jne		exit			; jump if no equal (al != bl) to function exit
+		inc		rdi				; rdi++
+		inc		rsi				; rsi++
+		jmp		_ft_strcmp	
+
+exit:
+		movzx	rax, al			; movzx add extension with 0 to dest
+		movzx	r8, bl
+		sub		rax, r8			; rax = rax - r8
+		ret
