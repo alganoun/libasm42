@@ -6,7 +6,7 @@
 /*   By: alganoun <alganoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:42:27 by allanganoun       #+#    #+#             */
-/*   Updated: 2021/01/19 13:08:55 by alganoun         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 08:22:06 by alganoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 int     main()
 {
     int fd;
-	char str[24] = "coucou est ce que ca va";
+	char str[24] = "\n";
 	char buffer[10];
+	char *str3;
+	char *str4;
 	const char *str2;
+
 
 	str2 = "\0";
 	fd = open("./memo.txt", O_RDONLY);
@@ -38,7 +41,12 @@ int     main()
 	//printf("my read = %zd\n", ft_read(fd, buffer, 10));
 
 	/*FT_WRITE*/
-	write(1,"coucou est ce que ca va\n", 25);
-	ft_write(1,"coucou est ce que ca va\n", 25);
+	//write(1,"coucou est ce que ca va\n", 25);
+	//ft_write(1,"coucou est ce que ca va\n", 25);
+
+	/*FT_STRDUP*/
+	str3 = strdup(str);
+	str4 = ft_strdup(str);
+	printf("strdup = %s\nmystrdup = %s\n", str3, str4);
 	return (0);
 }
