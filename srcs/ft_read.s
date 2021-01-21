@@ -1,6 +1,5 @@
 segment .text
 		global _ft_read
-
 _ft_read:
 		mov rax, 0x2000003		; set the call to read
 		syscall					; call of read
@@ -8,7 +7,7 @@ _ft_read:
 		jmp exit				; if everything went right just jump to the normal exit process
 
 exit_error:
-		mov rax, -1				; if error return (-1)
+		mov rax, -1				; an error as been detected, let's return -1
 		ret
 exit:
 		ret
