@@ -2,22 +2,20 @@ segment .text
 		global _ft_strcmp
 
 _ft_strcmp:
-		mov		al, BYTE [rdi]  ; al <- rdi[0] move first byte of rdi in al (al registe 1 BYTE)
-		mov		bl, BYTE [rsi]	; bl <- rdi[0] move first byte of rdi in bl (bl registe 1 BYTE)
-		cmp		al, 0			; chek if we are at the end of the character chain (rdi argv[0])
-		je		exit			; if is end of rdi go to function exit
-		cmp		bl, 0			
+		mov		al, BYTE [rdi]  ; al <- rdi[0] the char pointed by rdi
+		mov		bl, BYTE [rsi]	; bl <- rsi[0] the char pointed by rsisx
+		cmp		al, 0			; if we got to the end of the rdi string we exit
+		je		exit
+		cmp		bl, 0			; same here for rsi
 		je		exit
 		cmp		al, bl			; compare al with bl
-		jne		exit			; jump if no equal (al != bl) to function exit
+		jne		exit			; if the 2 char (al & bl) are not equals
 		inc		rdi				; rdi++
 		inc		rsi				; rsi++
-		jmp		_ft_strcmp	
+		jmp		_ft_strcmp
 
 exit:
 		movzx	rax, al			; movzx add extension with 0 to dest
 		movzx	r8, bl
 		sub		rax, r8			; rax = rax - r8
 		ret
-
-; je dois encore comprendre ce que son tous ces low register et à quoi ça sert
