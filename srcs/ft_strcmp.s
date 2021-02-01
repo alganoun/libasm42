@@ -3,7 +3,7 @@ segment .text
 
 _ft_strcmp:
 		mov		al, BYTE [rdi]  ; al <- rdi[0] the char pointed by rdi
-		mov		bl, BYTE [rsi]	; bl <- rsi[0] the char pointed by rsisx
+		mov		bl, BYTE [rsi]	; bl <- rsi[0] the char pointed by rsi
 		cmp		al, 0			; if we got to the end of the rdi string we exit
 		je		exit
 		cmp		bl, 0			; same here for rsi
